@@ -1,0 +1,30 @@
+<project name="SharepointWebserviceIntegration" default="compile-java" basedir=".">
+
+    <path id="cp">
+        <pathelement path="classes"/>
+        <pathelement path="src"/>
+        <fileset dir="lib" includes="*.jar"/>
+    </path>
+
+    <target name="clean" description="Nuke all generated files">
+        <!--<delete dir="tomcat"/>-->
+        <delete dir="classes"/>
+    </target>
+
+    <target name="compile-java">
+        <mkdir dir="classes"/>
+        <javac srcdir="src" fork="true" destdir="classes" debug="true">
+            <classpath>
+                <pathelement path="src"/>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="playground" depends="compile-java" description="A place to test bits of code in isolation">
+        <java classname="za.co.cmb.sharepoint.Playground"
+              classpathref="cp" fork="true" failonerror="true">
+        </java>
+    </target>
+
+</project>
