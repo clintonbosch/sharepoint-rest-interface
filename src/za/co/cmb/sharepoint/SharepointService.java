@@ -49,6 +49,14 @@ public class SharepointService {
         });
     }
 
+    /**
+     * This method returns id, name and mugshot URL of all users on the sharepoint server.
+     * @param username The username used for authentication against the sharepoint server
+     * @param password The password used for authentication against the sharepoint server
+     * @param domain The domain used for authentication against the sharepoint server
+     * @return The list of all users
+     * @throws IOException
+     */
     public List<SharepointUser> findAllUsers(String username, String password, String domain) throws IOException {
         try {
             httpClient.getCredentialsProvider().setCredentials(
