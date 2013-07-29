@@ -1,7 +1,7 @@
 Java Sharepoint REST API
 ========================
 
-This API allows you perform RESTful webservice calls to your Sharepoint server and work with simple POJOs taking away
+This API allows you to perform RESTful webservice calls to your Sharepoint server and work with simple POJOs taking away
 the need to parse XML or JSON responses. It has only been tested using Sharepoint 2013 server.
 
 To use this API include the sharepoint-rest-api.jar in your project classpath as well as all the dependencies in the
