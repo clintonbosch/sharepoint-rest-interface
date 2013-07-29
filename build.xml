@@ -19,6 +19,11 @@
                 <fileset dir="lib" includes="*.jar"/>
             </classpath>
         </javac>
+        <copy todir="classes">
+            <fileset dir=".">
+                <include name="log4j.properties"/>
+            </fileset>
+        </copy>
     </target>
 
     <target name="playground" depends="compile-java" description="A place to test bits of code in isolation">

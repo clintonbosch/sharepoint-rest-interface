@@ -1,4 +1,4 @@
-package za.co.cmb.sharepoint;
+package za.co.cmb.sharepoint.mapping;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
