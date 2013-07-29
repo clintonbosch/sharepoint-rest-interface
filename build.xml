@@ -1,5 +1,11 @@
 <project name="SharepointWebserviceIntegration" default="compile-java" basedir=".">
 
+    <property name="server.url" value=""/>
+    <property name="server.port" value=""/>
+    <property name="username" value=""/>
+    <property name="password" value=""/>
+    <property name="domain" value=""/>
+
     <path id="cp">
         <pathelement path="classes"/>
         <pathelement path="src"/>
@@ -26,9 +32,20 @@
         </copy>
     </target>
 
+    <target name="jar" depends="compile-java" description="Creates the deployable jar file">
+        <jar jarfile="sharepoint-rest-api.jar">
+            <fileset dir="classes"/>
+        </jar>
+    </target>
+
     <target name="playground" depends="compile-java" description="A place to test bits of code in isolation">
         <java classname="za.co.cmb.sharepoint.Playground"
               classpathref="cp" fork="true" failonerror="true">
+            <arg value="${server.url}"/>
+            <arg value="${server.port}"/>
+            <arg value="${username}"/>
+            <arg value="${password}"/>
+            <arg value="${domain}"/>
         </java>
     </target>
 
