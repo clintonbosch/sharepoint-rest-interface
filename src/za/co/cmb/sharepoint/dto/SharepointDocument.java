@@ -3,7 +3,7 @@ package za.co.cmb.sharepoint.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class SharpointDocument implements Serializable {
+public class SharepointDocument implements Serializable {
 
     private String name;
     private String path;

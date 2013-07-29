@@ -5,6 +5,9 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.util.List;
 
+/**
+ * Wrapper class representing the result[] in the JSON response
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SharepointResultList {
 

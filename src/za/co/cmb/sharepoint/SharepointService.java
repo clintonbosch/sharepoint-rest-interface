@@ -10,10 +10,9 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 import za.co.cmb.sharepoint.dto.SharepointUser;
-import za.co.cmb.sharepoint.dto.SharpointDocument;
+import za.co.cmb.sharepoint.dto.SharepointDocument;
 import za.co.cmb.sharepoint.mapping.SharepointResult;
-import za.co.cmb.sharepoint.mapping.SharepointWebserviceDocumentResponse;
-import za.co.cmb.sharepoint.mapping.SharepointWebserviceUserResponse;
+import za.co.cmb.sharepoint.mapping.SharepointWebserviceResponse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -41,9 +40,7 @@ public class SharepointService {
 
         urlPrefix = port == 443 ? "https://" : "http://";
         httpClient.addRequestInterceptor(new HttpRequestInterceptor() {
-            public void process(
-                    HttpRequest request, HttpContext context)
-                    throws HttpException, IOException {
+            public void process(HttpRequest request, HttpContext context) throws HttpException, IOException {
                 request.setHeader("Accept", "application/json");
             }
         });
@@ -59,13 +56,11 @@ public class SharepointService {
      */
     public List<SharepointUser> findAllUsers(String username, String password, String domain) throws IOException {
         try {
-            httpClient.getCredentialsProvider().setCredentials(
-                    new AuthScope(serverUrl, port),
-                    new NTCredentials(username, password, "WORKSTATION", domain));
+            addCredentials(username, password, domain);
 
-            SharepointWebserviceUserResponse result = (SharepointWebserviceUserResponse) getData(
+            SharepointWebserviceResponse result = (SharepointWebserviceResponse) getData(
                     urlPrefix + serverUrl + URL_LISTDATA + LIST_USERS,
-                    SharepointWebserviceUserResponse.class);
+                    SharepointWebserviceResponse.class);
 
             List<SharepointUser> sharepointUsers = new ArrayList<>();
             for (SharepointResult user : result.getSharepointResultList().getResults()) {
@@ -81,37 +76,39 @@ public class SharepointService {
             }
             return sharepointUsers;
         } finally {
-            // When HttpClient instance is no longer needed, shut down the connection manager to ensure
-            // immediate deallocation of all system resources
             httpClient.getConnectionManager().shutdown();
         }
     }
 
-    public List<SharpointDocument> search(String username, String password, String domain,String searchWord) throws IOException {
+    public List<SharepointDocument> search(String username, String password, String domain, String searchWord)
+            throws IOException {
         try {
-            httpClient.getCredentialsProvider().setCredentials(
-                    new AuthScope(serverUrl, port),
-                    new NTCredentials(username, password, "WORKSTATION", domain));
+            addCredentials(username, password, domain);
 
-            SharepointWebserviceDocumentResponse result = (SharepointWebserviceDocumentResponse) getData(
+            SharepointWebserviceResponse result = (SharepointWebserviceResponse) getData(
                     urlPrefix + serverUrl + URL_SEARCH + "'" + searchWord + "'",
-                    SharepointWebserviceDocumentResponse.class);
+                    SharepointWebserviceResponse.class);
 
-            List<SharpointDocument> sharpointDocuments = new ArrayList<>();
-            for (SharepointWebserviceDocumentResponse.SPResult document : result.getSpResultList().getResults()) {
-//                SharpointDocument spDocument = new SharpointDocument();
-//                sharpointDocuments.add(spDocument);
+//            List<SharepointDocument> sharepointDocuments = new ArrayList<>();
+//            for (SharepointWebserviceDocumentResponse.SPResult document : result.getSpResultList().getResults()) {
+//                SharepointDocument spDocument = new SharepointDocument();
+//                sharepointDocuments.add(spDocument);
 //                spDocument.setName(document.getName());
 //                SharepointWebserviceDocumentResponse.SPMetadata metadata = document.getMetadata();
 //                if (metadata != null)
 //                spDocument.setPath(metadata.getPath());
-            }
-            return sharpointDocuments;
+//            }
+//            return sharepointDocuments;
+            return null;
         } finally {
-            // When HttpClient instance is no longer needed, shut down the connection manager to ensure
-            // immediate deallocation of all system resources
             httpClient.getConnectionManager().shutdown();
         }
+    }
+
+    private void addCredentials(String username, String password, String domain) {
+        httpClient.getCredentialsProvider().setCredentials(
+                new AuthScope(serverUrl, port),
+                new NTCredentials(username, password, "WORKSTATION", domain));
     }
 
     private Object getData(String endpointURL, Class mappingClass) throws IOException {
