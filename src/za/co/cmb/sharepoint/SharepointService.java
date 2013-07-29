@@ -28,10 +28,7 @@ public class SharepointService {
     public static String URL_LISTDATA = "/_vti_bin/listdata.svc/";
     public static String URL_SEARCH = "/_api/search/query?querytext=";
 
-    public static String LIST_DOCUMENTS = "Documents()";
     public static String LIST_USERS = "UserInformationList()";
-
-    public static String FILTER_CONTENT_TYPE_DOCUMENT = "(ContentType eq 'Document')";
 
     private DefaultHttpClient httpClient = new DefaultHttpClient();
     private String serverUrl;
@@ -101,38 +98,6 @@ public class SharepointService {
 //                if (metadata != null)
 //                spDocument.setPath(metadata.getPath());
             }
-            return sharpointDocuments;
-        } finally {
-            // When HttpClient instance is no longer needed, shut down the connection manager to ensure
-            // immediate deallocation of all system resources
-            httpClient.getConnectionManager().shutdown();
-        }
-    }
-
-    public List<SharpointDocument> searchDocuments(String username, String password, String domain,String searchWord) throws IOException {
-        try {
-            httpClient.getCredentialsProvider().setCredentials(
-                    new AuthScope(serverUrl, port),
-                    new NTCredentials(username, password, "WORKSTATION", domain));
-
-            String filter = "?$filter=" + FILTER_CONTENT_TYPE_DOCUMENT + "and substringof('" + searchWord + "',Name)";
-
-            SharepointWebserviceDocumentResponse result = (SharepointWebserviceDocumentResponse) getData(
-                    urlPrefix + serverUrl + URL_LISTDATA + LIST_DOCUMENTS,
-                    SharepointWebserviceDocumentResponse.class);
-//            SharepointWebserviceDocumentResponse result = (SharepointWebserviceDocumentResponse) getData(
-//                    urlPrefix + serverUrl + URL_LISTDATA + LIST_DOCUMENTS + filter,
-//                    SharepointWebserviceDocumentResponse.class);
-
-            List<SharpointDocument> sharpointDocuments = new ArrayList<>();
-//            for (SharepointWebserviceDocumentResponse.SharepointResult document : result.getSharepointResultList().getResults()) {
-//                SharpointDocument spDocument = new SharpointDocument();
-//                sharpointDocuments.add(spDocument);
-//                spDocument.setName(document.getName());
-//                SharepointWebserviceDocumentResponse.SPMetadata metadata = document.getMetadata();
-//                if (metadata != null)
-//                spDocument.setPath(metadata.getPath());
-//            }
             return sharpointDocuments;
         } finally {
             // When HttpClient instance is no longer needed, shut down the connection manager to ensure
