@@ -8,7 +8,8 @@ To use this API include the sharepoint-rest-api.jar in your project classpath as
 lib directory. You can then use as follows:
 ```java
     SharepointService service = new SharepointService(foo.com, 443);
-    List<SharepointUser> users = service.findAllUsers(username, password, domain);
+    List<SharepointUser> users = service.findAllUsers(username, password);
+    List<SharepointSearchResult> results = sharepointService.search(username, password, "searchPhrase")
     ...
 ```
 
