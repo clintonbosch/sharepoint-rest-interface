@@ -5,6 +5,7 @@
     <property name="username" value=""/>
     <property name="password" value=""/>
     <property name="domain" value=""/>
+    <property name="search" value=""/>
 
     <path id="cp">
         <pathelement path="classes"/>
@@ -43,9 +44,10 @@
               classpathref="cp" fork="true" failonerror="true">
             <arg value="${server.url}"/>
             <arg value="${server.port}"/>
+            <arg value="${domain}"/>
             <arg value="${username}"/>
             <arg value="${password}"/>
-            <arg value="${domain}"/>
+            <arg value="${search}"/>
         </java>
     </target>
 
