@@ -15,8 +15,9 @@ lib directory. You can then use as follows:
 You can also wire in the bean using spring by adding this to your application-context.xml:
 ```
     <bean id="sharepointService" class="za.co.cmb.sharepoint.SharepointService">
-      <constructor-arg>my.sharepoint.server.com</constructor-arg>
-      <constructor-arg type="int"><value>443</value></constructor-arg>
+        <constructor-arg value="my.sharepoint.server.com"/>
+        <constructor-arg type="int" value="443"/>
+        <constructor-arg value="myDomain"/>
     </bean>
 ```
 
