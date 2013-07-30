@@ -91,6 +91,7 @@ public class SharepointService {
                 }
                 SharepointSearchResult sharepointSearchResult = new SharepointSearchResult();
                 sharepointSearchResult.setPath(values.get("Path"));
+                sharepointSearchResult.setParentFolder(values.get("ParentLink"));
                 sharepointSearchResult.setAuthor(values.get("Author"));
                 sharepointSearchResult.setHitHighlightedSummary(values.get("HitHighlightedSummary"));
                 sharepointSearchResult.setLastModified(values.get("LastModifiedTime"));

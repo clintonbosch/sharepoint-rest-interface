@@ -10,6 +10,7 @@ public class SharepointSearchResult implements Serializable {
     private double rank;
     private String hitHighlightedSummary;
     private String siteName;
+    private String parentFolder;
     private String lastModified;
 
     public String getAuthor() {
@@ -58,6 +59,14 @@ public class SharepointSearchResult implements Serializable {
 
     public void setSiteName(String siteName) {
         this.siteName = siteName;
+    }
+
+    public String getParentFolder() {
+        return parentFolder;
+    }
+
+    public void setParentFolder(String parentFolder) {
+        this.parentFolder = parentFolder;
     }
 
     public String getLastModified() {
