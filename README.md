@@ -7,7 +7,7 @@ the need to parse XML or JSON responses. It has only been tested using Sharepoin
 To use this API include the sharepoint-rest-api.jar in your project classpath as well as all the dependencies in the
 lib directory. You can then use as follows:
 ```java
-    SharepointService service = new SharepointService(foo.com, 443);
+    SharepointService service = new SharepointService(my.sharepoint.server.com, 443, myDomain);
     List<SharepointUser> users = service.findAllUsers(username, password);
     List<SharepointSearchResult> results = sharepointService.search(username, password, "searchPhrase")
     ...
