@@ -24,6 +24,7 @@ public class SharepointService {
 
     public static String URL_LISTDATA = "/_vti_bin/listdata.svc/";
     public static String URL_SEARCH = "/_api/search/query?querytext=";
+    public static String URL_TEST = "/_vti_bin/listdata.svc/UserInformationList(1)";
 
     public static String LIST_USERS = "UserInformationList()";
 
@@ -102,6 +103,29 @@ public class SharepointService {
             }
         }
         return results;
+    }
+
+    /**
+     * This method tests the sharepoint connection and credentials
+     */
+    public boolean test(String username, String password) {
+        String endpoint = urlPrefix + serverUrl + URL_TEST;
+        int responseCode;
+        try {
+            initHttpConnection();
+            addCredentials(username, password);
+            HttpGet httpget = new HttpGet(endpoint);
+
+            LOG.debug("Executing request: " + httpget.getRequestLine());
+            HttpResponse response = httpClient.execute(httpget);
+            responseCode = response.getStatusLine().getStatusCode();
+        } catch (Exception e) {
+            return false;
+            //code
+        } finally {
+            httpClient.getConnectionManager().shutdown();
+        }
+        return responseCode == 200;
     }
 
     private void addCredentials(String username, String password) {
