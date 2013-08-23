@@ -26,6 +26,11 @@ public class SharepointService {
     public static String URL_SEARCH = "/_api/search/query?querytext=";
     public static String URL_TEST = "/_vti_bin/listdata.svc/UserInformationList(1)";
 
+    public static String MARKDOWN_HIGHLIGHT_START = "<c0>";
+    public static String MARKDOWN_HIGHLIGHT_END = "</c0>";
+    public static String MARKDOWN_ELLIPSIS = "<ddd/>";
+
+
     public static String LIST_USERS = "UserInformationList()";
 
     private DefaultHttpClient httpClient;
