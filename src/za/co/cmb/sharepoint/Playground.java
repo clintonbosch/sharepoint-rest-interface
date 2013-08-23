@@ -24,7 +24,7 @@ public class Playground {
                 System.exit(1);
             }
 
-            SharepointService sharepointService = new SharepointService(args[0], Integer.parseInt(args[1]), args[2]);
+            SharepointService sharepointService = new SharepointServiceSupport(args[0], Integer.parseInt(args[1]), args[2]);
             sharepointService.test(args[3], args[4]);
 
             System.out.println("###################### USERS ######################");
