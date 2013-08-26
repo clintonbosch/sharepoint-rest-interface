@@ -9,13 +9,13 @@ lib directory. You can then use as follows:
 ```java
     SharepointService service = new SharepointService(my.sharepoint.server.com, 443, myDomain);
     List<SharepointUser> users = service.findAllUsers(username, password);
-    List<SharepointSearchResult> results = sharepointService.search(username, password, "searchPhrase")
+    List<SharepointSearchResult> results = sharepointManager.search(username, password, "searchPhrase")
     ...
 ```
 
 You can also wire in the bean using spring by adding this to your application-context.xml:
 ```
-    <bean id="sharepointService" class="za.co.cmb.sharepoint.SharepointService">
+    <bean id="sharepointManager" class="za.co.cmb.sharepoint.SharepointManager">
         <constructor-arg value="my.sharepoint.server.com"/>
         <constructor-arg type="int" value="443"/>
         <constructor-arg value="myDomain"/>

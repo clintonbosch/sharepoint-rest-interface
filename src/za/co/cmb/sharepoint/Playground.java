@@ -24,17 +24,17 @@ public class Playground {
                 System.exit(1);
             }
 
-            SharepointService sharepointService = new SharepointServiceSupport(args[0], Integer.parseInt(args[1]), args[2]);
-            sharepointService.test(args[3], args[4]);
+            SharepointManager sharepointManager = new SharepointManagerSupport(args[0], Integer.parseInt(args[1]), args[2]);
+            sharepointManager.test(args[3], args[4]);
 
             System.out.println("###################### USERS ######################");
-            List<SharepointUser> users = sharepointService.findAllUsers(args[3], args[4]);
+            List<SharepointUser> users = sharepointManager.findAllUsers(args[3], args[4]);
             for (SharepointUser user : users) {
                 System.out.println(user.toString());
             }
 
             System.out.println("###################### SEARCH (" + args[5] + ") ######################");
-            List<SharepointSearchResult> results = sharepointService.search(args[3], args[4], args[5]);
+            List<SharepointSearchResult> results = sharepointManager.search(args[3], args[4], args[5]);
             for (SharepointSearchResult result : results) {
                 System.out.println(result.toString());
             }

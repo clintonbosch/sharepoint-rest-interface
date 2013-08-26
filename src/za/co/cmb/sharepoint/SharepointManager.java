@@ -6,7 +6,7 @@ import za.co.cmb.sharepoint.dto.SharepointUser;
 import java.io.IOException;
 import java.util.List;
 
-public interface SharepointService {
+public interface SharepointManager {
 
     public static String URL_LISTDATA = "/_vti_bin/listdata.svc/";
     public static String URL_SEARCH = "/_api/search/query?querytext=";

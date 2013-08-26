@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class SharepointServiceSupport implements SharepointService {
+public class SharepointManagerSupport implements SharepointManager {
 
     private Logger LOG = Logger.getLogger(getClass());
 
@@ -28,7 +28,7 @@ public class SharepointServiceSupport implements SharepointService {
     private String domain;
     private String urlPrefix;
 
-    public SharepointServiceSupport(String serverUrl, int port, String domain) {
+    public SharepointManagerSupport(String serverUrl, int port, String domain) {
         this.serverUrl = serverUrl;
         this.port = port;
         this.domain = domain;
